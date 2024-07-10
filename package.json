@@ -1,6 +1,6 @@
 {
-  "name": "react-mui-icons",
-  "version": "0.0.2",
+  "name": "mui-icons-typescript",
+  "version": "0.0.1",
   "type": "module",
   "exports": {
     ".": {
