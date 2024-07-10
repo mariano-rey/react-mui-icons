@@ -1,15 +1,15 @@
 {
   "name": "mui-icons-typescript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/main.es.js",
+      "import": "./dist/main.js",
       "require": "./dist/main.cjs.js"
     }
   },
-  "main": "./dist/main.cjs.js",
-  "module": "./dist/main.es.js",
+  "main": "./dist/main.js",
+  "module": "./dist/main.js",
   "typings": "./dist/main.d.ts",
   "files": [
     "dist"
