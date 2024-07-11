@@ -1,30 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import typescript from '@rollup/plugin-typescript'
+import dts from 'vite-plugin-dts'
 import path from 'path'
-import { typescriptPaths } from 'rollup-plugin-typescript-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: [{ find: '~', replacement: path.resolve(__dirname, './src') }],
-  },
+  plugins: [react(), dts()],
+  resolve: { alias: [{ find: '~', replacement: path.resolve(__dirname, './src') }] },
   build: {
-    manifest: true,
-    minify: true,
-    reportCompressedSize: true,
-    lib: {
-      entry: path.resolve(__dirname, 'src/main.ts'),
-      fileName: 'main',
-      formats: ['es', 'cjs'],
-    },
+    copyPublicDir: false,
+    sourcemap: true,
+    emptyOutDir: true,
+    lib: { entry: path.resolve(__dirname, 'src/main.ts'), fileName: 'main', formats: ['es'] },
     rollupOptions: {
-      external: [],
-      plugins: [
-        typescriptPaths({ preserveExtensions: true }),
-        typescript({ sourceMap: false, declaration: true, outDir: 'dist' }),
-      ],
+      external: ['react', 'react-dom', '@mui/material'],
+      output: {
+        globals: {
+          react: 'react',
+          'react-dom': 'react-dom',
+          '@mui/material': '@mui/material',
+        },
+      },
     },
   },
 })
